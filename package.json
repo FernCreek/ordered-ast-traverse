@@ -1,6 +1,6 @@
 {
   "name": "ordered-ast-traverse",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "simple but flexible lexically ordered AST traversal with pre and post visitors",
   "main": "ordered-ast-traverse.js",
   "repository": {
