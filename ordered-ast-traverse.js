@@ -26,23 +26,27 @@ function traverse(root, options) {
 
         if (res !== false) {
             var nodeProps = props[node.type];
-            for (var idx = 0; idx < nodeProps.length; idx++) {
-                var prop = nodeProps[idx];
+            if (nodeProps) {
+                for (var idx = 0; idx < nodeProps.length; idx++) {
+                    var prop = nodeProps[idx];
 
-                if (skipProperty && skipProperty(prop, node)) {
-                    continue;
-                }
-
-                var child = node[prop];
-
-                if (Array.isArray(child)) {
-                    for (var i = 0; i < child.length; i++) {
-                        var c = child[i];
-                        visit(c, node, prop, i);
+                    if (skipProperty && skipProperty(prop, node)) {
+                        continue;
                     }
-                } else {
-                    visit(child, node, prop);
+
+                    var child = node[prop];
+
+                    if (Array.isArray(child)) {
+                        for (var i = 0; i < child.length; i++) {
+                            var c = child[i];
+                            visit(c, node, prop, i);
+                        }
+                    } else {
+                        visit(child, node, prop);
+                    }
                 }
+            } else {
+                console.warn("Unknown node encountered:", node.type, node);
             }
         }
 
